@@ -1,0 +1,129 @@
+<!--
+Name: Joshua Michaud
+Email: Joshua_Michaud@student.uml.edu
+Affiliation: Student at Umass Lowell Computer Science
+Date: 11/12/2020
+Description: This webpage is uses JavaScript to create a Multiplication Table and jQuery
+validation Plugin is used for error handling
+Location: github
+91.461 Assignment: Assignment #6
+Joshua Michaud, UMass Lowell Computer Science,
+Copyright (c) 2020 by Joshua Michaud. All rights reserved. May be
+freely copied or excerpted for educational purposes with credit to the author.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--Specifies the character set for page -->
+    <meta charset="utf-8">
+    <!--This will scale the web page depending on browser size -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Link to external CSS. -->
+    <link rel="stylesheet" href="./css/style.css">
+
+     <!-- Linked stylesheet for icons. -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!--Title of my web page -->
+    <title>
+      Multiplication Table
+    </title>
+  </head>
+  <!--This holds all of the pages content-->
+  <body>
+      <!-- Nav Bar with links to hw -->
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class = "navbar-nav" >
+                  <li class="nav-item">
+                      <a class="nav-link " href="https://github.com/Joshua-Michaud" target="_blank">
+                          <i class="fab fa-github"></i>
+                      </a>
+                  </li>
+                  <li class="nav-item active">
+                      <a class="nav-link" href="https://joshua-michaud.github.io/Personal-Website/">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          GUI HW ASSIGNMENTS
+                      </a>
+                      <div class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
+                          <a class = "dropdown-item" href="#hw1"> HW 1: Intro </a>
+                          <!-- This will link back to this web page for hw 2 -->
+                          <a class = "dropdown-item" href="https://cs.uml.edu/~jmichaud/Hw2/">HW 2: HTML Basics</a>
+                          <a class = "dropdown-item" href="https://cs.uml.edu/~jmichaud/Hw3/">HW 3: CSS</a>
+                          <a class = "dropdown-item" href="https://joshua-michaud.github.io/Personal-Website/">HW 4: Bootstrap</a>
+                          <a class = "dropdown-item" href="https://joshua-michaud.github.io/Hw5/">HW 5: JavaScript</a>
+                          <a class = "dropdown-item" href="https://joshua-michaud.github.io/GUI_Hw6/">HW 6: jQuery Part 1</a>
+                          <a class = "dropdown-item" href="#hw7">HW 7: jQuery Part 2</a>
+                          <a class = "dropdown-item" href="#hw8">HW 8: Final Project</a>
+                     </div>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+      <div class="container" id = "JumboHelper">
+          <div class="jumbotron text-center">
+              <!--Header of my page-->
+              <h1>Multiplication Table</h1>
+          </div>
+      </div>
+
+      <div class="container text-center" id = "FormHelper">
+        <h2>Please Enter Table Dimensions</h2>
+          <form id = "inputs" onsubmit="return false">
+              <div class="form-group col-sm">
+                  <label for="multiplierMin" class="control-label">Multiplier X Min</label>
+                  <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_html_clear_input This was found to clear the older input from the form bar -->
+                  <input id="xMin" name = "xMin" type="number" class="xMin form-control"  placeholder="Enter Starting X Min Value">
+              </div>
+              <div class="form-group col-sm">
+                  <label for="multiplierMax" class="control-label">Multiplier X Max</label>
+                  <input id="xMax" name = "xMax" type="number" class="xMax form-control"  placeholder="Enter Ending X Max Value">
+              </div>
+              <div class="form-group col-sm">
+                  <label for="multiplicandMin" class="control-label">Multiplicand Y Min</label>
+                  <input id="yMin" name = "yMin" type="number" class=" yMin form-control"  placeholder="Enter Starting Y Min Value">
+              </div>
+              <div class="form-group col-sm">
+                  <label for="multiplicandMax" class="control-label">Multiplicand Y Max</label>
+                  <input id="yMax" name = "yMax" type="number" class=" yMax form-control"  placeholder="Enter Ending Y Max Value">
+              </div>
+              <!--https://mdbootstrap.com/snippets/jquery/mdbootstrap/879456 used this to see how to center a button -->
+              <div class="container my-4">
+                <div class="form-group text-center" id = "buttons">
+                    <button type="submit" class="btn btn-primary" id = "subButton">Create Table</button>
+                </div>
+                <div class="form-group text-center" id = "buttons">
+                    <button type="reset" class="btn btn-danger" id = "resetButton">Reset</button>
+                </div>
+             </div>
+          </form>
+      </div>
+
+      <div class = "table">
+         <!-- This is where the table will be created -->
+          <table id = "multTable">
+          </table>
+      </div>
+
+
+      <footer class = "text-center">
+          <p>Copyright &copy; 2020 by Joshua Michaud. All rights reserved.</p>
+      </footer>
+      <!-- Jquery valididator, Javascript, and Bootstrap -->
+      <script src="js/script.js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="./js/form-validation.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js" integrity="sha384-6UVI3atWyL/qZbDIJb7HW8PyHhFNMiX5rYNY2gAYcaYJjYk5cNIQShSQPBleGMYu" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+   </body>
+</html>
